@@ -12,7 +12,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        //
+        return Article::all();
     }
 
     public function store(Request $request)
@@ -26,7 +26,5 @@ class ArticleController extends Controller
             return $th;
         }
     }
-
- 
 
 }

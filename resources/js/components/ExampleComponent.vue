@@ -9,20 +9,20 @@
                             <div class="col-12">
                                 <h2 class="mb-4"> LATEST POSTS </h2>
                             </div>
-                            <div class="col-12 mt-5" v-for="data in 5">
+                            <div class="col-12 mt-5" v-for="(data, index) in arrayArticles" :key="index">
                                 <div>
                                     <span class="title-article">
-                                        A BEAUTIFUL BLOG WITH NO IMAGES REQUIRED
+                                        {{data.title}}
                                     </span>
                                 </div>
                                 <div class="date-publish">
                                     <span>
-                                        21/12/2020
+                                        {{data.publication_date}}
                                     </span>
                                 </div>
                                 <div>
                                     <p class="description">
-                                        Typography is a WordPress theme created for bloggers that just want to write, without the hassle of looking for the right featured image. It has a unique design based on beautiful typography and a modern, clean layout. Simply write your content and publish will handle the rest. Efficiently negotiate enabled partnerships whereas team building channels. Competently visualize cross-platform...
+                                        {{data.description}}
                                     </p>
                                 </div>
                             </div>
@@ -36,8 +36,20 @@
 
 <script>
     export default {
+        data(){
+            return {
+                arrayArticles: []
+            }
+        },
+
         mounted() {
-            console.log('Component mounted.')
+            this.loadContent()
+        },
+        methods:{
+            async loadContent(){
+                const {data} = await axios('/articles/index')
+                this.arrayArticles = data 
+            }
         }
     }
 </script>

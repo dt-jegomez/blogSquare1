@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="create-articles">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
@@ -7,16 +7,16 @@
             <!--  -->
             <form class="needs-validation" novalidate>
               <div class="form-row">
-                <div class="col-md-4 mb-3">
+                <div class="col-12 mb-3">
                   <label for="validationCustom01">Title</label>
                   <input type="text" class="form-control" id="validationCustom01" v-model="model.title" required />
                   <div class="invalid-feedback">Please provide a valid!</div>
                 </div>
               </div>
               <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <div class="col-12 mb-3">
                   <label for="validationCustom03">Description</label>
-                  <input type="text" class="form-control" id="validationCustom03" v-model="model.description" required />
+                  <textarea class="form-control" id="validationCustom03" rows="4" v-model="model.description" required />
                   <div class="invalid-feedback">Please provide a valid</div>
                 </div>
               </div>
