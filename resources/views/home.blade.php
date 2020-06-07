@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="" id="app">
-    <example-component></example-component>
+    <create-articles />
 </div>
 @endsection
