@@ -42,7 +42,7 @@ class DemoCron extends Command
         $response = Http::get('https://sq1-api-test.herokuapp.com/posts');
             $jsonData = $response->json();
             $temp = collect($jsonData['data'])->map(function($value,$key){
-                $value['created_by'] = 99;
+                $value['created_by'] = 1;
                 return $value;
             });
             Article::insert($temp->toArray());
