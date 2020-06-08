@@ -28,6 +28,13 @@ Vue.component('create-articles', require('./components/CreateArticles').default)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ import Vue from 'vue';
+ import ElementUI from 'element-ui';
+ import 'element-ui/lib/theme-chalk/index.css';
+//  import App from './App.vue';
+
+ Vue.use(ElementUI);
+
 const app = new Vue({
     el: '#app',
 });

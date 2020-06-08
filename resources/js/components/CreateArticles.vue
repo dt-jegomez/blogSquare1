@@ -20,8 +20,21 @@
                   <div class="invalid-feedback">Please provide a valid</div>
                 </div>
               </div>
-              <button class="btn btn-primary" type="button" @click="validation">Submit</button>
+              <button class="btn btn-primary" type="button" @click="validation">To post</button>
             </form>
+            <!--  -->
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+              <el-form-item label="Activity name" prop="name">
+                <el-input v-model="ruleForm.name"></el-input>
+              </el-form-item>
+              <el-form-item label="Activity form" prop="desc">
+                <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="submitForm('ruleForm')">Create</el-button>
+                <el-button @click="resetForm('ruleForm')">Reset</el-button>
+              </el-form-item>
+            </el-form>
             <!--  -->
           </div>
         </div>
@@ -37,7 +50,27 @@ export default {
             model:{
                 title:null,
                 description: null
-            }
+            },
+            //
+            ruleForm: {
+            name: '',
+            region: '',
+            date1: '',
+            date2: '',
+            delivery: false,
+            type: [],
+            resource: '',
+            desc: ''
+          },
+          rules: {
+            name: [
+              { required: true, message: 'Please input Activity name', trigger: 'blur' },
+              { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
+            ],            
+            desc: [
+              { required: true, message: 'Please input activity form', trigger: 'blur' }
+            ]
+          }
         };
     },
     mounted(){
@@ -68,6 +101,19 @@ export default {
                 title:null,
                 description: null
             }
+        },
+        submitForm(formName) {
+          this.$refs[formName].validate((valid) => {
+            if (valid) {
+              alert('submit!');
+            } else {
+              console.log('error submit!!');
+              return false;
+            }
+          });
+        },
+        resetForm(formName) {
+          this.$refs[formName].resetFields();
         }
     }
 }

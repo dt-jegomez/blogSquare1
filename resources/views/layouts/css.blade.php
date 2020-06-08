@@ -4,3 +4,5 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="https://unpkg.com/element-ui@2.13.2/lib/theme-chalk/index.css" rel="stylesheet">
+    
