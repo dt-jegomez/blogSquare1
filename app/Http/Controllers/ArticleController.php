@@ -20,7 +20,7 @@ class ArticleController extends Controller
         try {
             return \DB::transaction(function()use($request){
                 Article::createArticle($request->all());
-                return response(['mensaje' => 'OK'],201);
+                return response(['mensaje' => 'created successfully'],201);
             });
         } catch (\Throwable $th) {
             return $th;

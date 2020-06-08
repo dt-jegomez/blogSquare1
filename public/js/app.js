@@ -3580,57 +3580,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      forms: {},
-      model: {
+      ruleForm: {
         title: null,
         description: null
       },
-      //
-      ruleForm: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      },
       rules: {
-        name: [{
+        title: [{
           required: true,
           message: 'Please input Activity name',
           trigger: 'blur'
         }, {
           min: 3,
-          max: 5,
-          message: 'Length should be 3 to 5',
+          max: 250,
+          message: 'Length should be 3 to 250',
           trigger: 'blur'
         }],
-        desc: [{
+        description: [{
           required: true,
           message: 'Please input activity form',
           trigger: 'blur'
@@ -3638,52 +3606,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    window.addEventListener('load', function () {
-      'use strict';
-
-      _this.forms = document.getElementsByClassName('needs-validation'); // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    }, false); // axios('/articles/other-articles').the((rs)=>{
-    //   console.log(rs);
-    // })
-  },
+  mounted: function mounted() {},
   methods: {
-    validation: function validation(e) {
-      var _this2 = this;
-
-      var validation = Array.prototype.filter.call(this.forms, function (form) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        form.classList.add('was-validated');
-
-        _this2.createArticle();
-      });
-    },
     createArticle: function createArticle() {
-      var _this3 = this;
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var res;
+        var _yield$axios$post, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/articles/create', _this3.model);
+                return axios.post('/articles/create', _this.ruleForm);
 
               case 2:
-                res = _context.sent;
-                _this3.model = {
-                  title: null,
-                  description: null
-                };
+                _yield$axios$post = _context.sent;
+                data = _yield$axios$post.data;
 
-              case 4:
+                if (data.mensaje) {
+                  _this.$notify.success({
+                    title: 'Post',
+                    message: data.mensaje,
+                    offset: 100
+                  });
+                }
+
+                _this.resetForm('ruleForm');
+
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -3692,9 +3644,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     submitForm: function submitForm(formName) {
+      var _this2 = this;
+
       this.$refs[formName].validate(function (valid) {
         if (valid) {
-          alert('submit!');
+          _this2.createArticle();
         } else {
           console.log('error submit!!');
           return false;
@@ -100959,102 +100913,6 @@ var render = function() {
             { staticClass: "card-body" },
             [
               _c(
-                "form",
-                { staticClass: "needs-validation", attrs: { novalidate: "" } },
-                [
-                  _c("div", { staticClass: "form-row" }, [
-                    _c("div", { staticClass: "col-12 mb-3" }, [
-                      _c("label", { attrs: { for: "validationCustom01" } }, [
-                        _vm._v("Title")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.model.title,
-                            expression: "model.title"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "validationCustom01",
-                          required: ""
-                        },
-                        domProps: { value: _vm.model.title },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.model, "title", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v("Please provide a valid!")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-row" }, [
-                    _c("div", { staticClass: "col-12 mb-3" }, [
-                      _c("label", { attrs: { for: "validationCustom03" } }, [
-                        _vm._v("Description")
-                      ]),
-                      _vm._v(" "),
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.model.description,
-                            expression: "model.description"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          id: "validationCustom03",
-                          rows: "4",
-                          required: ""
-                        },
-                        domProps: { value: _vm.model.description },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.model,
-                              "description",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v("Please provide a valid")
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
-                      on: { click: _vm.validation }
-                    },
-                    [_vm._v("To post")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
                 "el-form",
                 {
                   ref: "ruleForm",
@@ -101068,15 +100926,15 @@ var render = function() {
                 [
                   _c(
                     "el-form-item",
-                    { attrs: { label: "Activity name", prop: "name" } },
+                    { attrs: { label: "Title", prop: "title" } },
                     [
                       _c("el-input", {
                         model: {
-                          value: _vm.ruleForm.name,
+                          value: _vm.ruleForm.title,
                           callback: function($$v) {
-                            _vm.$set(_vm.ruleForm, "name", $$v)
+                            _vm.$set(_vm.ruleForm, "title", $$v)
                           },
-                          expression: "ruleForm.name"
+                          expression: "ruleForm.title"
                         }
                       })
                     ],
@@ -101085,16 +100943,16 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
-                    { attrs: { label: "Activity form", prop: "desc" } },
+                    { attrs: { label: "Description", prop: "description" } },
                     [
                       _c("el-input", {
                         attrs: { type: "textarea" },
                         model: {
-                          value: _vm.ruleForm.desc,
+                          value: _vm.ruleForm.description,
                           callback: function($$v) {
-                            _vm.$set(_vm.ruleForm, "desc", $$v)
+                            _vm.$set(_vm.ruleForm, "description", $$v)
                           },
-                          expression: "ruleForm.desc"
+                          expression: "ruleForm.description"
                         }
                       })
                     ],
@@ -101114,19 +100972,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Create")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-button",
-                        {
-                          on: {
-                            click: function($event) {
-                              return _vm.resetForm("ruleForm")
-                            }
-                          }
-                        },
-                        [_vm._v("Reset")]
+                        [_vm._v("To post")]
                       )
                     ],
                     1
