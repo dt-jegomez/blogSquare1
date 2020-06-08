@@ -12,7 +12,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return Article::all();
+        return Article::orderBy('publication_date','desc')->get();
     }
 
     public function store(Request $request)

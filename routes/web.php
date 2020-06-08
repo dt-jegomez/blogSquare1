@@ -30,7 +30,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::prefix('articles')->group( function(){
         Route::post('create','ArticleController@store');
-        // Route::get('other-articles','ArticleController@otherArticles');
-        Route::get('index','ArticleController@index');
     });
+});
+
+Route::prefix('articles')->group( function(){
+    Route::get('index','ArticleController@index');
 });
