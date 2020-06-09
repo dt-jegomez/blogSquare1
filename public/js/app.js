@@ -3571,10 +3571,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ListPost: _partials_ListsPost__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    ir: function ir() {
+      this.$refs.ListPost.ir();
+    }
   }
 });
 
@@ -3777,6 +3786,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    ir: function ir() {
+      $('.scrolls').animate({
+        scrollTop: 'opx'
+      });
+      this.loadContent();
     }
   }
 });
@@ -100990,9 +101005,28 @@ var render = function() {
           [
             _c("div", { staticClass: "box-title" }, [
               _c("div", { staticClass: "px-5 row" }, [
-                _vm._m(0),
+                _c("div", { staticClass: "col-12" }, [
+                  _c("h2", { staticClass: "mb-4" }, [_vm._v("LATEST POSTS")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-flex justify-content-end" }, [
+                    _c("i", {
+                      staticClass: "el-icon-refresh-right ir-arriba",
+                      on: { click: _vm.ir }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [_c("List-post")], 1)
+                _c(
+                  "div",
+                  { staticClass: "col-12" },
+                  [
+                    _c("List-post", {
+                      ref: "ListPost",
+                      staticClass: "list-post"
+                    })
+                  ],
+                  1
+                )
               ])
             ])
           ]
@@ -101001,16 +101035,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("h2", { staticClass: "mb-4" }, [_vm._v(" LATEST POSTS ")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -101145,31 +101170,39 @@ var render = function() {
       staticStyle: { "overflow-y": "auto", "max-height": "60vh" }
     },
     _vm._l(_vm.arrayArticles, function(data, index) {
-      return _c("div", { key: index, staticClass: "col-12 mt-5" }, [
-        _c("div", [
-          _c("span", { staticClass: "title-article" }, [
-            _vm._v("\n                " + _vm._s(data.title) + "\n            ")
+      return _c(
+        "div",
+        { key: index, staticClass: "col-12 mt-5 border-top pt-3" },
+        [
+          _c("div", [
+            _c("span", { staticClass: "title-article" }, [
+              _vm._v(
+                "\n                " + _vm._s(data.title) + "\n            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "date-publish" }, [
+            _c("span", [
+              _vm._v(
+                "\n                " +
+                  _vm._s(data.publication_date) +
+                  "\n            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "description" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(data.description) +
+                  "\n            "
+              )
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "date-publish" }, [
-          _c("span", [
-            _vm._v(
-              "\n                " +
-                _vm._s(data.publication_date) +
-                "\n            "
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("p", { staticClass: "description" }, [
-            _vm._v(
-              "\n                " + _vm._s(data.description) + "\n            "
-            )
-          ])
-        ])
-      ])
+        ]
+      )
     }),
     0
   )

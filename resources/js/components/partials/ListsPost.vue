@@ -1,6 +1,6 @@
 <template>
     <div class="container scrolls" style="overflow-y: auto; max-height: 60vh;">
-        <div class="col-12 mt-5" v-for="(data, index) in arrayArticles" :key="index">
+        <div class="col-12 mt-5 border-top pt-3" v-for="(data, index) in arrayArticles" :key="index">
             <div>
                 <span class="title-article">
                     {{data.title}}
@@ -34,6 +34,12 @@
             async loadContent(){
                 const {data} = await axios('/articles/index')
                 this.arrayArticles = data 
+            },
+            ir(){
+                $('.scrolls').animate({
+                    scrollTop: 'opx'
+                })
+                this.loadContent()
             }
         }
     }
