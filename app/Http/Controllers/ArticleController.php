@@ -27,4 +27,23 @@ class ArticleController extends Controller
         }
     }
 
+    public function setArticles(){
+        try {
+            $response = Http::get('https://sq1-api-test.herokuapp.com/posts');
+            $jsonData = $response->json();
+            $temp = collect($jsonData['data'])->map(function($value,$key){
+                $a = Article::where([['title',$value['title']],['description',$value['description']]])->doesntExist();
+                if ($a) {
+                    $value['created_by'] = 1;
+                    return $value;
+                }
+            })->filter();
+            if ($temp->isNotEmpty()) {
+                Article::insert($temp->toArray());
+            }
+        } catch (\Throwable $th) {
+            return $th;
+        }
+    }
+
 }

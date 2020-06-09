@@ -35,4 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::prefix('articles')->group( function(){
     Route::get('index','ArticleController@index');
+    Route::get('set-articles','ArticleController@setArticles');
+
 });

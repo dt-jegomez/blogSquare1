@@ -42,9 +42,14 @@ class DemoCron extends Command
         $response = Http::get('https://sq1-api-test.herokuapp.com/posts');
             $jsonData = $response->json();
             $temp = collect($jsonData['data'])->map(function($value,$key){
-                $value['created_by'] = 1;
-                return $value;
-            });
-            Article::insert($temp->toArray());
+                $a = Article::where([['title',$value['title']],['description',$value['description']]])->doesntExist();
+                if ($a) {
+                    $value['created_by'] = 1;
+                    return $value;
+                }
+            })->filter();
+            if ($temp->isNotEmpty()) {
+                Article::insert($temp->toArray());
+            }
     }
 }

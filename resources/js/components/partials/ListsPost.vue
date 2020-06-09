@@ -28,6 +28,9 @@
             }
         },
         mounted() {
+            axios('/articles/set-articles').then((res)=>{
+                console.log(res);                
+            })
             this.loadContent()
         },
         methods:{
