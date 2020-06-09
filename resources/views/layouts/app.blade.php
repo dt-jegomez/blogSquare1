@@ -7,17 +7,21 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Laravel') }}</title>
         @include("layouts.css")
-
     </head>
-    <body>
-        <div>
-            <x-navbar></x-navbar>
+<body style="overflow: hidden;">
 
-            <main class="main-fondo">
-                @yield('content')
-            </main>
-        </div>
-        @include("layouts.js")
-        @yield("js")
-    </body>
+<section>
+    <x-navbar></x-navbar>
+</section>
+<section>
+    <main class="main-fondo">
+        @yield('content')
+    </main>
+</section>
+@include("layouts.js")
+@yield("js")
+
+
+
+</body>
 </html>

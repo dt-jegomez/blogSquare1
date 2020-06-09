@@ -10936,10 +10936,14 @@ html {
   background: #f8f9fa !important;
 }
 
-.navbar-square {
+.navbar-sq {
   width: 100%;
   background: #c62641 !important;
   z-index: 9;
+}
+
+.bg-dark {
+  background: #c62641 !important;
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
