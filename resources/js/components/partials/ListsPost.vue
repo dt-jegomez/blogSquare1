@@ -23,16 +23,17 @@
     export default {
         data(){
             return {
-                arrayArticles: []
+                arrayArticles: [],
+                arrayArticlesOriginal: []
             }
         },
-
         mounted() {
             this.loadContent()
         },
         methods:{
             async loadContent(){
                 const {data} = await axios('/articles/index')
+                this.arrayArticlesOriginal = data 
                 this.arrayArticles = data 
             },
             ir(){
@@ -40,6 +41,14 @@
                     scrollTop: 'opx'
                 })
                 this.loadContent()
+            },
+            filter(date){
+                if (date===null) {
+                    this.arrayArticles = this.arrayArticlesOriginal
+                    
+                }else{
+                    this.arrayArticles = this.arrayArticlesOriginal.filter( x => this.moment(x.publication_date).format('YYYY-MM-DD') === this.moment(date).format('YYYY-MM-DD') )
+                }
             }
         }
     }

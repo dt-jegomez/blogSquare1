@@ -36,6 +36,15 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
  Vue.use(ElementUI);
 
+
+import moment from 'moment'
+// import 'moment/locale/es'
+// moment.locale('es')
+Object.defineProperty(Vue.prototype, 'moment', {
+    value: moment
+})
+
+
 const app = new Vue({
     el: '#app',
 });
